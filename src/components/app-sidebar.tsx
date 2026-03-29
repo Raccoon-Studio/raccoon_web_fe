@@ -42,7 +42,7 @@ export function AppSidebar({
         {/* Glassy logo tile */}
         <div
           className="
-            relative flex h-9 w-9 shrink-0 items-center justify-center
+            relative flex h-9 w-9 mt-2 shrink-0 items-center justify-center
             rounded-lg text-lg font-bold text-background
             bg-foreground/90
             ring-1 ring-white/10
@@ -94,8 +94,7 @@ export function AppSidebar({
                       isActive && [
                         "text-sidebar-foreground font-semibold",
                         "bg-foreground/[0.07]",
-                        "ring-1 ring-white/10",
-                        "shadow-[0_2px_12px_-2px_rgba(0,0,0,0.25)]",
+                        "ring-1 ring-gray-200",
                       ],
 
                       // ── Collapsed: icon-only mode ──
@@ -111,11 +110,9 @@ export function AppSidebar({
 
                       // ── Collapsed + active: dark glass tile ──
                       isActive && [
-                        "group-data-[collapsible=icon]:bg-foreground/10",
                         "group-data-[collapsible=icon]:text-sidebar-foreground",
                         "group-data-[collapsible=icon]:ring-1",
                         "group-data-[collapsible=icon]:ring-white/15",
-                        "group-data-[collapsible=icon]:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)]",
                       ],
                     )}
                   >
