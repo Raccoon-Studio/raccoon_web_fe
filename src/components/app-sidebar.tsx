@@ -27,26 +27,28 @@ export function AppSidebar({
   return (
     <Sidebar
       collapsible="icon"
-      className="border-r border-sidebar-border/60"
+      className="border-r border-sidebar-border/40"
       {...props}
     >
       {/* ── Header / Brand ── */}
       <SidebarHeader
         className="
-          flex flex-row items-center gap-3 px-5 h-auto
+          flex flex-row items-center gap-3 px-5 py-5
           group-data-[collapsible=icon]:px-0
           group-data-[collapsible=icon]:justify-center
-          group-data-[collapsible=icon]:w-full
+          group-data-[collapsible=icon]:py-4
         "
       >
-        {/* Glassy logo tile */}
         <div
           className="
             relative flex h-9 w-9 shrink-0 items-center justify-center
-            rounded-lg text-lg font-bold text-background
-            bg-foreground/90
-            ring-1 ring-white/10
-            shadow-[0_4px_16px_-2px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.12)]
+            rounded-lg text-lg font-bold
+            bg-sidebar-foreground text-sidebar
+            shadow-sm
+            transition-transform duration-200
+            group-data-[collapsible=icon]:h-8
+            group-data-[collapsible=icon]:w-8
+            group-data-[collapsible=icon]:text-base
           "
         >
           {siteConfig.logo.primary}
@@ -56,7 +58,7 @@ export function AppSidebar({
           <span className="font-bold text-[15px] tracking-tight text-sidebar-foreground uppercase">
             {siteConfig.shortName}
           </span>
-          <span className="text-[10px] tracking-widest font-semibold text-sidebar-foreground/40 uppercase mt-0.5">
+          <span className="text-[10px] tracking-widest font-semibold text-sidebar-foreground/35 uppercase mt-0.5">
             {siteConfig.subTitle}
           </span>
         </div>
@@ -65,12 +67,13 @@ export function AppSidebar({
       {/* ── Navigation ── */}
       <SidebarContent
         className="
-          px-3 pt-10
-          group-data-[collapsible=icon]:px-2
+          px-3 pt-6
+          group-data-[collapsible=icon]:px-1.5
+          group-data-[collapsible=icon]:pt-4
         "
       >
         <SidebarGroup className="group-data-[collapsible=icon]:p-0">
-          <SidebarMenu className="gap-2 group-data-[collapsible=icon]:items-center">
+          <SidebarMenu className="gap-1.5 group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:gap-2">
             {navigationData.map((item) => {
               const isActive = pathname === item.url;
               return (
@@ -80,26 +83,26 @@ export function AppSidebar({
                     isActive={isActive}
                     tooltip={item.title}
                     className={cn(
-                      // Base
+                      // ── Base ──
                       "relative h-10 px-3 rounded-lg",
-                      "text-[15px] font-medium tracking-wide",
-                      "transition-all duration-200",
-                      // Override shadcn's [&_svg]:size-4 to keep icons at size-5
+                      "text-[13px] font-medium tracking-wide",
+                      "transition-colors duration-150 ease-out",
                       "[&_svg]:size-5! [&_svg]:shrink-0",
-                      // Inactive
-                      "text-sidebar-foreground/50",
-                      "hover:text-sidebar-foreground hover:bg-sidebar-accent/60",
 
-                      // ── Expanded: active — dark glass, no blue bg ──
+                      // ── Inactive ──
+                      "text-sidebar-foreground/45",
+                      "hover:text-sidebar-foreground/80",
+                      "hover:bg-sidebar-foreground/[0.04]",
+
+                      // ── Expanded active ──
                       isActive && [
                         "text-sidebar-foreground font-semibold",
-                        "bg-foreground/[0.07]",
-                        "ring-1 ring-white/10",
-                        "shadow-[0_2px_12px_-2px_rgba(0,0,0,0.25)]",
+                        "bg-sidebar-foreground/[0.06]",
+                        "border border-sidebar-border/60",
+                        "hover:bg-sidebar-foreground/[0.08]",
                       ],
 
-                      // ── Collapsed: icon-only mode ──
-                      // Use !important to override shadcn's size-8! and p-2!
+                      // ── Collapsed: icon-only ──
                       "group-data-[collapsible=icon]:h-10!",
                       "group-data-[collapsible=icon]:w-10!",
                       "group-data-[collapsible=icon]:p-0!",
@@ -109,13 +112,13 @@ export function AppSidebar({
                       "group-data-[collapsible=icon]:mx-auto",
                       "group-data-[collapsible=icon]:rounded-xl",
 
-                      // ── Collapsed + active: dark glass tile ──
+                      // ── Collapsed active ──
                       isActive && [
-                        "group-data-[collapsible=icon]:bg-foreground/10",
+                        "group-data-[collapsible=icon]:bg-sidebar-foreground/[0.08]",
                         "group-data-[collapsible=icon]:text-sidebar-foreground",
-                        "group-data-[collapsible=icon]:ring-1",
-                        "group-data-[collapsible=icon]:ring-white/15",
-                        "group-data-[collapsible=icon]:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)]",
+                        "group-data-[collapsible=icon]:border",
+                        "group-data-[collapsible=icon]:border-sidebar-border/60",
+                        "group-data-[collapsible=icon]:shadow-sm",
                       ],
                     )}
                   >
@@ -126,12 +129,13 @@ export function AppSidebar({
                       {item.title}
                     </span>
 
-                    {/* Active left accent bar — expanded only */}
+                    {/* Active accent bar — expanded only */}
                     {isActive && (
                       <span
                         className="
                           absolute left-0 top-1/2 -translate-y-1/2
-                          w-[3px] h-5 rounded-r-full bg-sidebar-primary
+                          w-[2.5px] h-5 rounded-r-full
+                          bg-sidebar-foreground/70
                           group-data-[collapsible=icon]:hidden
                         "
                         aria-hidden="true"
