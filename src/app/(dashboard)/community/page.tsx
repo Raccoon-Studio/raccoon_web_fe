@@ -1,11 +1,14 @@
-import { JSX } from "react";
-import { PagePlaceholder } from "@/components/dashboard/page-placeholder";
+"use client";
 
-export default function CommunityPage(): JSX.Element {
+import { Users } from "lucide-react";
+import { ModulePlaceholder } from "@/components/dashboard/module-placeholder";
+
+export default function CommunityPage() {
   return (
-    <PagePlaceholder
-      title="community screen"
-      subtitle="Connect and collaborate with other members."
+    <ModulePlaceholder 
+      title="Community Exchange" 
+      subtitle="Connect and collaborate with other Raccoon Studio users" 
+      icon={Users} 
     />
   );
 }

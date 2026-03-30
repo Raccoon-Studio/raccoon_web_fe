@@ -1,6 +1,9 @@
 "use client";
 
 import { JSX } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { headerNavIcons } from "@/utils/navigation";
 import { siteConfig } from "@/data/config";
@@ -16,10 +19,36 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Header(): JSX.Element {
+  const pathname = usePathname();
+  const rawSegments = pathname === "/" ? [] : pathname.split("/").filter(Boolean);
+  const pathSegments = rawSegments.filter(s => s.toLowerCase() !== 'dashboard');
+
   return (
     <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-sidebar-border/60 bg-sidebar px-4 sm:px-6 transition-all duration-300">
       <div className="flex items-center gap-2">
         <SidebarTrigger className="-ml-2 h-10 w-10 text-sidebar-foreground/70 hover:text-sidebar-foreground transition-all rounded-xl [&_svg]:size-[22px]" />
+        
+        <div className="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sidebar-foreground/60 ml-2">
+           {pathSegments.map((segment, index) => {
+              const targetIndex = rawSegments.indexOf(segment);
+              const href = `/${rawSegments.slice(0, targetIndex + 1).join('/')}`;
+              const isLast = index === pathSegments.length - 1;
+              const formattedSegment = segment.replace(/-/g, ' ');
+
+              return (
+                 <div key={href} className="flex items-center gap-2">
+                    {index > 0 && <ChevronRight size={14} className="opacity-40" />}
+                    {isLast ? (
+                       <span className="text-sidebar-foreground">{formattedSegment}</span>
+                    ) : (
+                       <Link href={href} className="hover:text-sidebar-foreground transition-colors">
+                          {formattedSegment}
+                       </Link>
+                    )}
+                 </div>
+              );
+           })}
+        </div>
       </div>
 
       <div className="flex items-center gap-2 sm:gap-3">
