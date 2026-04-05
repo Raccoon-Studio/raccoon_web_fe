@@ -1,0 +1,10 @@
+src/components/auth/signup/steps/StepAddress.tsx(78,28): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/components/auth/signup/steps/StepAddress.tsx(108,76): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/components/auth/signup/steps/StepBusinessDetails.tsx(95,89): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/components/auth/signup/steps/StepBusinessDetails.tsx(159,91): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/components/auth/signup/steps/StepVerification.tsx(104,62): error TS2322: Type 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.

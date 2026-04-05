@@ -1,0 +1,297 @@
+/* Global tokens and utilities for the Celestial Monolith theme. */
+
+/* Tailwind core import. */
+@import "tailwindcss";
+
+/* Animation utilities used by shadcn / Tailwind animation helpers. */
+@import "tw-animate-css";
+
+/* shadcn Tailwind preset / component styles. */
+@import "shadcn/tailwind.css";
+
+/* Enables Tailwind's dark: variant when any parent has the .dark class. */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* ------------------------------ */
+  /* Custom responsive breakpoints  */
+  /* ------------------------------ */
+  --breakpoint-3xs: 325px;
+  --breakpoint-2xs: 375px;
+  --breakpoint-xs: 425px;
+  --breakpoint-ssm: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-mdl: 834px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1680px;
+  --breakpoint-4xl: 1920px;
+
+  /* ------------------------------ */
+  /* Font aliases                    */
+  /* ------------------------------ */
+  --font-sans: var(--font-inter); /* Default UI/body sans font. */
+  --font-mono: var(--font-jetbrains-mono); /* Code / labels / technical text. */
+  --font-heading: var(--font-space-grotesk); /* Heading font alias. */
+  --font-headline: var(--font-space-grotesk); /* Larger marketing headlines. */
+  --font-body: var(--font-inter); /* Main paragraph / app text. */
+  --font-label: var(--font-jetbrains-mono); /* Labels, tags, overlines. */
+
+  /* ------------------------------------------------ */
+  /* Expose semantic tokens to Tailwind color system  */
+  /* ------------------------------------------------ */
+  --color-background: var(--background); /* Main app background token. */
+  --color-foreground: var(--foreground); /* Main text color token. */
+  --color-card: var(--card); /* Card background token. */
+  --color-card-foreground: var(--card-foreground); /* Card text color token. */
+  --color-popover: var(--popover); /* Popover / floating panel background. */
+  --color-popover-foreground: var(--popover-foreground); /* Popover text color. */
+  --color-primary: var(--primary); /* Main brand action color. */
+  --color-primary-foreground: var(--primary-foreground); /* Text/icon on primary. */
+  --color-secondary: var(--secondary); /* Secondary accent color. */
+  --color-secondary-foreground: var(--secondary-foreground); /* Text/icon on secondary. */
+  --color-muted: var(--muted); /* Muted surface color. */
+  --color-muted-foreground: var(--muted-foreground); /* Muted text color. */
+  --color-accent: var(--accent); /* Accent hover / highlight background. */
+  --color-accent-foreground: var(--accent-foreground); /* Text on accent. */
+  --color-destructive: var(--destructive); /* Error / destructive action color. */
+  --color-destructive-foreground: var(--destructive-foreground); /* Text on destructive. */
+  --color-border: var(--border); /* Default border color. */
+  --color-input: var(--input); /* Input border / input surface token. */
+  --color-ring: var(--ring); /* Focus ring color. */
+
+  /* -------------------------------------------------------- */
+  /* Extra surface tokens for layered SaaS website/dashboard  */
+  /* -------------------------------------------------------- */
+  --color-surface: var(--er-surface); /* Base surface color. */
+  --color-surface-dim: var(--er-surface-dim); /* Slightly dimmer surface. */
+  --color-surface-bright: var(--er-surface-bright); /* Brighter elevated surface. */
+  --color-surface-container-lowest: var(--er-surface-container-lowest); /* Page background layer. */
+  --color-surface-container-low: var(--er-surface-container-low); /* Low-elevation section background. */
+  --color-surface-container: var(--er-surface-container); /* Standard container/card fill. */
+  --color-surface-container-high: var(--er-surface-container-high); /* Elevated panel surface. */
+  --color-surface-container-highest: var(--er-surface-container-highest); /* Highest elevation surface. */
+  --color-surface-variant: var(--er-surface-variant); /* Tinted surface for badges / states. */
+  --color-on-surface: var(--er-on-surface); /* Main text on surfaces. */
+  --color-on-surface-variant: var(--er-on-surface-variant); /* Secondary text on surfaces. */
+  --color-primary-container: var(--er-primary-container); /* Soft primary-tinted background. */
+  --color-on-primary: var(--er-on-primary); /* Text on primary container / primary tone. */
+  --color-on-primary-container: var(--er-on-primary-container); /* Stronger text on primary container. */
+  --color-secondary-fixed: var(--er-secondary-fixed); /* Stable secondary accent tone. */
+  --color-tertiary-container: var(--er-tertiary-container); /* Extra accent-tinted surface. */
+
+  /* ------------------------------ */
+  /* Radius tokens                   */
+  /* ------------------------------ */
+  --radius-sm: 0.375rem; /* Small rounded corners. */
+  --radius-md: 0.5rem; /* Default rounded corners. */
+  --radius-lg: 0.75rem; /* Large cards / buttons. */
+  --radius-xl: 1rem; /* Hero cards / drawers / modals. */
+}
+
+/* ===================================================== */
+/* Light mode tokens — fresh startup feel                */
+/* Base: slate neutrals + teal brand + sky-blue accent   */
+/* ===================================================== */
+:root {
+  color-scheme: light; /* Root is the light theme, so this should be light. */
+
+  --background: #f8fafc; /* Main page background: clean cool off-white. */
+  --foreground: #0f172a; /* Main readable text: dark slate / charcoal. */
+
+  --card: #ffffff; /* Card and panel background: pure white for clean SaaS feel. */
+  --card-foreground: #0f172a; /* Text shown inside cards. */
+
+  --popover: rgba(255, 255, 255, 0.72); /* Glassy popover background with transparency. */
+  --popover-foreground: #0f172a; /* Text inside popovers / dropdowns. */
+
+  --primary: #0ea5a4; /* Brand primary: fresh teal. */
+  --primary-foreground: #ffffff; /* Text/icons on primary teal buttons. */
+
+  --secondary: #38bdf8; /* Secondary accent: startup-style sky blue. */
+  --secondary-foreground: #082f49; /* Dark blue text on sky-blue surfaces. */
+
+  --muted: #f1f5f9; /* Muted section backgrounds / subtle UI areas. */
+  --muted-foreground: #64748b; /* Secondary text / helper text. */
+
+  --accent: #ecfeff; /* Very light cyan accent for hover states / highlights. */
+  --accent-foreground: #0f172a; /* Text placed on accent backgrounds. */
+
+  --destructive: #ef4444; /* Error / destructive action color. */
+  --destructive-foreground: #ffffff; /* Text on destructive buttons / badges. */
+
+  --border: #e2e8f0; /* Default border color for cards, tables, inputs. */
+  --input: #cbd5e1; /* Input border / field outline color. */
+  --ring: #38bdf8; /* Focus ring color for accessibility and visual clarity. */
+
+  --er-surface: #f8fafc; /* Base light surface. */
+  --er-surface-dim: #e2e8f0; /* Slightly dimmer surface for layered depth. */
+  --er-surface-bright: #ffffff; /* Bright elevated surface. */
+
+  --er-surface-container-lowest: #f8fafc; /* Main app/page background layer. */
+  --er-surface-container-low: #ffffff; /* Light section / card-adjacent surface. */
+  --er-surface-container: #f1f5f9; /* Standard container surface. */
+  --er-surface-container-high: #e2e8f0; /* More elevated subtle panel tone. */
+  --er-surface-container-highest: #cbd5e1; /* Highest-elevation neutral layer. */
+
+  --er-surface-variant: #e0f2fe; /* Soft blue-tinted variant surface. */
+
+  --er-on-surface: #0f172a; /* Default text on any standard surface. */
+  --er-on-surface-variant: #475569; /* Less prominent text / icons. */
+
+  --er-primary-container: #ccfbf1; /* Soft teal container for highlights / selections. */
+  --er-on-primary: #134e4a; /* Text/icons on primary container. */
+  --er-on-primary-container: #0f766e; /* Stronger teal text for tinted containers. */
+
+  --er-secondary-fixed: #bae6fd; /* Stable light sky-blue accent tone. */
+  --er-tertiary-container: #cffafe; /* Extra cyan-tinted background for info blocks. */
+
+  --er-solar-from: #0ea5a4; /* Gradient start — teal. */
+  --er-solar-to: #38bdf8; /* Gradient end — sky blue. */
+  --er-solar-text: #0f172a; /* Text placed on the teal→blue gradient. */
+  --er-solar-glow: rgba(14, 165, 164, 0.18); /* Soft teal glow for highlights. */
+
+  --er-monolith-shadow: rgba(15, 23, 42, 0.12); /* Soft slate shadow for depth. */
+
+  --er-autofill-bg: #f1f5f9; /* Browser autofill background override. */
+  --er-autofill-text: #0f172a; /* Browser autofill text color override. */
+}
+
+/* ===================================================== */
+/* Dark mode tokens — charcoal/slate with teal + sky     */
+/* ===================================================== */
+.dark {
+  color-scheme: dark; /* Native form controls render in dark mode. */
+
+  --background: #0b1220; /* Main dark page background. */
+  --foreground: #e2e8f0; /* Main readable text on dark backgrounds. */
+
+  --card: #111827; /* Card / panel background in dark mode. */
+  --card-foreground: #e2e8f0; /* Text inside dark cards. */
+
+  --popover: rgba(11, 18, 32, 0.72); /* Frosted dark popover / dropdown background. */
+  --popover-foreground: #e2e8f0; /* Text on dark popovers. */
+
+  --primary: #2dd4bf; /* Brighter teal for better contrast in dark mode. */
+  --primary-foreground: #042f2e; /* Deep teal text/icons on bright primary surfaces. */
+
+  --secondary: #7dd3fc; /* Lighter sky blue accent for dark mode visibility. */
+  --secondary-foreground: #082f49; /* Deep blue text on secondary surfaces. */
+
+  --muted: #1e293b; /* Muted dark surface for sections / subtle controls. */
+  --muted-foreground: #94a3b8; /* Secondary text in dark mode. */
+
+  --accent: #1e293b; /* Accent background for hover / interactive states. */
+  --accent-foreground: #e2e8f0; /* Text on accent backgrounds. */
+
+  --destructive: #f87171; /* Destructive color in dark mode. */
+  --destructive-foreground: #450a0a; /* Dark readable text on destructive surfaces. */
+
+  --border: #334155; /* Default dark-mode border color. */
+  --input: #334155; /* Dark input border / outline color. */
+  --ring: #7dd3fc; /* Focus ring color in dark mode. */
+
+  --er-surface: #0f172a; /* Base dark surface. */
+  --er-surface-dim: #0b1220; /* Dimmest dark surface. */
+  --er-surface-bright: #1e293b; /* Brighter elevated dark surface. */
+
+  --er-surface-container-lowest: #0b1220; /* App/page background layer. */
+  --er-surface-container-low: #0f172a; /* Low-elevation section surface. */
+  --er-surface-container: #111827; /* Standard card/container surface. */
+  --er-surface-container-high: #1e293b; /* Higher elevation panels. */
+  --er-surface-container-highest: #334155; /* Highest elevation dark layer. */
+
+  --er-surface-variant: #163040; /* Blue-teal tinted dark variant surface. */
+
+  --er-on-surface: #e2e8f0; /* Main text on dark surfaces. */
+  --er-on-surface-variant: #94a3b8; /* Secondary text on dark surfaces. */
+
+  --er-primary-container: #115e59; /* Deep teal container for badges / selected states. */
+  --er-on-primary: #ccfbf1; /* Light text on dark teal containers. */
+  --er-on-primary-container: #99f6e4; /* Strong mint-teal text for emphasis. */
+
+  --er-secondary-fixed: #0c4a6e; /* Stable dark sky-blue tone. */
+  --er-tertiary-container: #155e75; /* Extra cyan-blue container for tertiary accents. */
+
+  --er-solar-from: #14b8a6; /* Gradient start — brighter teal in dark mode. */
+  --er-solar-to: #38bdf8; /* Gradient end — sky blue. */
+  --er-solar-text: #0f172a; /* Dark text works best on this bright gradient. */
+  --er-solar-glow: rgba(56, 189, 248, 0.22); /* Blue glow for highlighted areas. */
+
+  --er-monolith-shadow: rgba(0, 0, 0, 0.5); /* Stronger shadow for dark mode depth. */
+
+  --er-autofill-bg: #1e293b; /* Autofill background in dark inputs. */
+  --er-autofill-text: #e2e8f0; /* Autofill text color in dark inputs. */
+}
+
+@layer base {
+  * {
+    @apply outline-ring/50; /* Gives focused elements a softer shared outline color. */
+  }
+
+  html {
+    @apply h-full overflow-x-hidden scroll-smooth; /* Full-height layout, no horizontal scroll, smooth anchors. */
+  }
+
+  body {
+    @apply min-h-screen bg-surface-container-lowest font-body text-on-surface antialiased; /* Global body background, typography, and text color. */
+  }
+
+  ::selection {
+    background-color: var(--er-primary-container); /* Highlight selected text with soft teal. */
+    color: var(--er-on-primary); /* Keep selected text readable. */
+  }
+
+  a,
+  button,
+  input {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); /* Smooth modern easing for interactions. */
+  }
+}
+
+@layer utilities {
+  .solar-flare {
+    background-image: linear-gradient(45deg, var(--er-solar-from), var(--er-solar-to)); /* Brand gradient: teal → sky blue. */
+    color: var(--er-solar-text); /* Text color on the gradient utility. */
+  }
+
+  .monolith-shadow {
+    box-shadow: 0 20px 50px -12px var(--er-monolith-shadow); /* Soft large shadow for hero cards / floating panels. */
+  }
+
+  .celestial-glass {
+    background: color-mix(in srgb, var(--er-surface) 70%, transparent); /* Frosted glass surface using current theme surface. */
+    backdrop-filter: blur(20px); /* Blur behind the glass panel. */
+  }
+
+  .display-monolith {
+    font-family: var(--font-space-grotesk); /* Display font for hero headings. */
+    font-weight: 700; /* Bold display weight. */
+    letter-spacing: -0.02em; /* Slightly tighter tracking for modern SaaS headlines. */
+  }
+
+  .m3-label {
+    @apply font-label text-[10px] uppercase tracking-[0.24em] text-on-surface-variant; /* Micro label / eyebrow text style. */
+  }
+}
+
+/* Normalize browser autofill colors so they match your theme. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--er-autofill-bg) inset; /* Replace the browser autofill background. */
+  -webkit-text-fill-color: var(--er-autofill-text); /* Replace the browser autofill text color. */
+  transition: background-color 5000s ease-in-out 0s; /* Prevent harsh autofill flash. */
+}
+
+/* Respect users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important; /* Effectively disables long animations. */
+    animation-iteration-count: 1 !important; /* Prevents repeated animation loops. */
+    scroll-behavior: auto !important; /* Disables smooth scrolling for accessibility. */
+    transition-duration: 0.01ms !important; /* Minimizes transitions for reduced motion users. */
+  }
+}
